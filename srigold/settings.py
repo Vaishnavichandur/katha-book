@@ -93,9 +93,15 @@ REST_FRAMEWORK = {
 from corsheaders.defaults import default_headers
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
-    os.environ.get("FRONTEND_ORIGIN", "http://localhost:3000"),
-]
-CORS_ALLOW_HEADERS = list(default_headers) + ["authorization"]
+         "http://localhost:3000",  # Development
+         "https://saraswathisilvermerchant.onrender.com",  # Production frontend
+      ]
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+         "authorization",
+         "content-type",  # Add if needed for JSON payloads
+     ]
+
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
